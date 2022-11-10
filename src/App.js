@@ -7,7 +7,10 @@ function App() {
     <div className="App">
       <Header />
       <main className="main">
-        <InputForm />
+        <div className="control-items">
+          <InputForm />
+          <div className="filter">Filter by region</div>
+        </div>
       </main>
     </div>
   );

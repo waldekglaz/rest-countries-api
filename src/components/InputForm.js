@@ -6,7 +6,7 @@ function InputForm() {
   return (
     <form className={styles.form}>
       <input type="text" placeholder="Search for country" />
-      <BiSearch />
+      <BiSearch className={styles["search-icon"]} />
     </form>
   );
 }
