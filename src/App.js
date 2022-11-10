@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import Header from "./components/Header";
 import InputForm from "./components/InputForm";
 import Filter from "./components/Filter";
+import Country from "./components/Country";
 import axios from "axios";
+import uniqid from "uniqid";
 
 import "./App.css";
 function App() {
@@ -25,7 +27,6 @@ function App() {
     };
     getData();
   }, []);
-  console.log(data);
   return (
     <div className="App">
       <Header />
@@ -34,10 +35,21 @@ function App() {
           <InputForm />
           <Filter />
         </div>
-        {data &&
-          data.map((country) => {
-            return <div>{country.altSpellings[1]}</div>;
-          })}
+        <div className="country-list">
+          {data &&
+            data.map((country) => {
+              return (
+                <Country
+                  key={uniqid()}
+                  name={country.name.common}
+                  flag={country.flags.png}
+                  population={country.population}
+                  region={country.continents}
+                  capital={country.capital}
+                />
+              );
+            })}
+        </div>
       </main>
     </div>
   );

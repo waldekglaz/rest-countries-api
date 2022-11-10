@@ -1,21 +1,23 @@
 import React from "react";
-
+import styles from "./Country.module.css";
 function Country({ flag, name, population, region, capital }) {
   return (
-    <div>
-      <img src={flag} />
-      <h2>{name}</h2>
-      <ul>
-        <li>
-          Population:<span>{population}</span>
-        </li>
-        <li>
-          Region:<span>{region}</span>
-        </li>
-        <li>
-          Capital:<span>{capital}</span>
-        </li>
-      </ul>
+    <div className={styles.country}>
+      <img className={styles.country__img} src={flag} />
+      <div className={styles["text-content"]}>
+        <h2 className={styles["country__name"]}>{name}</h2>
+        <ul>
+          <li>
+            Population:<span>{population}</span>
+          </li>
+          <li>
+            Region:<span>{region}</span>
+          </li>
+          <li>
+            Capital:<span>{capital}</span>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 }
