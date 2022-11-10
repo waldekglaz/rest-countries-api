@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "./components/Header";
 import InputForm from "./components/InputForm";
+import Filter from "./components/Filter";
 import "./App.css";
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
       <main className="main">
         <div className="control-items">
           <InputForm />
-          <div className="filter">Filter by region</div>
+          <Filter />
         </div>
       </main>
     </div>

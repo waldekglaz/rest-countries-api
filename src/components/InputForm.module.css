@@ -10,14 +10,18 @@
   font-size: 12px;
   color: #111517;
   border-color: transparent;
+  margin-bottom: 40px;
 }
 .form input::placeholder {
   color: #c4c4c4;
 }
+.form input:focus {
+  outline-color: #ccc;
+}
 .search-icon {
   position: absolute;
   left: 32px;
-  top: 33.33%;
+  top: 16px;
   color: #b2b2b2;
 }
 @media (min-width: 768px) {
