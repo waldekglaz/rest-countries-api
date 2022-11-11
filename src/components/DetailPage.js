@@ -3,26 +3,22 @@ import styles from "./DetailPage.module.css";
 import { BsArrowLeft } from "react-icons/bs";
 
 function DetailPage({ detailData, data, onClick }) {
-  console.log(detailData);
+  // Catching nested data
   const curr = Object.values(detailData.currencies);
   const lang = Object.values(detailData.languages).join(", ");
   const nativeNames = Object.values(detailData.name.nativeName);
   const borders = detailData.borders;
   const countryCode = detailData.cca3;
-  // const nativeName = detailData.name.nativeName.ara.official;
-  const nativeNameParent = detailData.name.nativeName;
-  console.log(nativeNames[0].official, "native name");
+
+  // creating array of neighbour countries full names
   const borderCountries = [];
   for (const el in borders) {
-    // console.log(borders[el]);
-
     for (const el2 in data) {
-      if (data[el2].cca3 === borders[el]) {
+      if (countryCode === borders[el]) {
         borderCountries.push(data[el2].name.common);
       }
     }
   }
-  // console.log(borderCountries);
 
   return (
     <div className={styles["detail-page"]}>
@@ -58,12 +54,22 @@ function DetailPage({ detailData, data, onClick }) {
           Languages: <span>{lang}</span>
         </li>
       </ul>
-      <p>
-        Border Countries:
-        <span>
-          {borderCountries.length > 0 ? borderCountries.join(", ") : "None"}
-        </span>
-      </p>
+      <div className={styles["borders-wrapper"]}>
+        <p>Border Countries:</p>
+        <div className={styles.borders}>
+          {borderCountries.length === 0 && (
+            <span className={styles.border}>None</span>
+          )}
+          {borderCountries.length > 0 &&
+            borderCountries.map((country) => {
+              return (
+                <span className={styles.border} key={country}>
+                  {country}
+                </span>
+              );
+            })}
+        </div>
+      </div>
     </div>
   );
 }
