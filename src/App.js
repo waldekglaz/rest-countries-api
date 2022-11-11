@@ -4,7 +4,6 @@ import InputForm from "./components/InputForm";
 import Filter from "./components/Filter";
 import Country from "./components/Country";
 import DetailPage from "./components/DetailPage";
-import FilterBody from "./components/FilterBody";
 import axios from "axios";
 import uniqid from "uniqid";
 
@@ -16,6 +15,7 @@ function App() {
   const [isDetailPageVisible, setIsDetailPageVisible] = useState(false);
   const [detailData, setDetailData] = useState(null);
   const [isFilterOpened, setIsFilterOpened] = useState(false);
+  const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
     const getData = async () => {
@@ -40,10 +40,40 @@ function App() {
   const onDetailPageClose = () => {
     setIsDetailPageVisible(false);
     setDetailData(null);
+    setInputValue("");
   };
   const onFilterClick = () => {
     setIsFilterOpened(!isFilterOpened);
   };
+  const onFormSubmitHandler = (e) => {
+    e.preventDefault();
+  };
+
+  const onChangeInputValueHandler = (e) => {
+    setInputValue(e.target.value);
+
+    if (e.target.value === "") {
+      setData(data);
+      return;
+    }
+    // const searched = data.filter((item) => {
+    //   console.log(inputValue.toLowerCase());
+    //   return item.name.common.toLowerCase() === e.target.value.toLowerCase();
+    // });
+    // setData(searched);
+    const searchResults = [];
+    const size = e.target.value.length;
+    data.forEach((el) => {
+      if (
+        el.name.common.slice(0, size).toLowerCase() ===
+        e.target.value.toLowerCase()
+      ) {
+        searchResults.push(el);
+      }
+    });
+    setData(searchResults);
+  };
+
   return (
     <div className="App">
       <Header />
@@ -51,7 +81,11 @@ function App() {
         {!isDetailPageVisible && (
           <React.Fragment>
             <div className="control-items">
-              <InputForm />
+              <InputForm
+                onSubmit={onFormSubmitHandler}
+                value={inputValue}
+                onChange={onChangeInputValueHandler}
+              />
               <Filter onClick={onFilterClick} isFilterOpened={isFilterOpened} />
             </div>
             <div className="country-list">
