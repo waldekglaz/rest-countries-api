@@ -1,0 +1,31 @@
+.detail-page button {
+  background: #ffffff;
+  box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.293139);
+  border-radius: 2px;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 7px 24px;
+  margin-bottom: 64px;
+}
+.detail-page img {
+  width: 100%;
+  margin-bottom: 44px;
+  border-radius: 5px;
+}
+.detail-page h2 {
+  font-size: 22px;
+  margin-bottom: 16px;
+}
+.detail-page ul {
+  list-style: none;
+  font-weight: 800;
+}
+.detail-page ul li {
+  margin-bottom: 16px;
+}
+.detail-page span {
+  font-weight: 400;
+}
+.detail-page p {
+  font-weight: 800;
+}
