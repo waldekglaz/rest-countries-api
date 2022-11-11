@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import InputForm from "./components/InputForm";
 import Filter from "./components/Filter";
 import Country from "./components/Country";
+import DetailPage from "./components/DetailPage";
 import axios from "axios";
 import uniqid from "uniqid";
 
@@ -11,6 +12,8 @@ function App() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isDetailPageVisible, setIsDetailPageVisible] = useState(false);
+  const [detailData, setDetailData] = useState(null);
 
   useEffect(() => {
     const getData = async () => {
@@ -27,29 +30,55 @@ function App() {
     };
     getData();
   }, []);
+  const onCountryClick = (data, item) => {
+    const [country] = data.filter((country) => country.name.common === item);
+    setDetailData(country);
+    setIsDetailPageVisible(true);
+  };
+  const onDetailPageClose = () => {
+    setIsDetailPageVisible(false);
+    setDetailData(null);
+  };
   return (
     <div className="App">
       <Header />
       <main className="main">
-        <div className="control-items">
-          <InputForm />
-          <Filter />
-        </div>
-        <div className="country-list">
-          {data &&
-            data.map((country) => {
-              return (
-                <Country
-                  key={uniqid()}
-                  name={country.name.common}
-                  flag={country.flags.png}
-                  population={country.population}
-                  region={country.continents}
-                  capital={country.capital}
-                />
-              );
-            })}
-        </div>
+        {!isDetailPageVisible && (
+          <React.Fragment>
+            <div className="control-items">
+              <InputForm />
+              <Filter />
+            </div>
+            <div className="country-list">
+              {loading && <div>A moment please...</div>}
+              {error && (
+                <div>{`There is a problem fetching the post data - ${error}`}</div>
+              )}
+              {data &&
+                data.map((country) => {
+                  return (
+                    <Country
+                      key={uniqid()}
+                      name={country.name.common}
+                      flag={country.flags.png}
+                      population={country.population}
+                      region={country.region}
+                      capital={country.capital}
+                      onClick={onCountryClick}
+                      data={data}
+                    />
+                  );
+                })}
+            </div>
+          </React.Fragment>
+        )}
+        {isDetailPageVisible && (
+          <DetailPage
+            detailData={detailData}
+            onClick={onDetailPageClose}
+            data={data}
+          />
+        )}
       </main>
     </div>
   );

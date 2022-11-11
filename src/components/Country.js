@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./Country.module.css";
-function Country({ flag, name, population, region, capital }) {
+function Country({ flag, name, population, region, capital, onClick, data }) {
   return (
-    <div className={styles.country}>
+    <div className={styles.country} onClick={() => onClick(data, name)}>
       <img className={styles.country__img} src={flag} />
       <div className={styles["text-content"]}>
         <h2 className={styles["country__name"]}>{name}</h2>
