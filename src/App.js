@@ -4,6 +4,7 @@ import InputForm from "./components/InputForm";
 import Filter from "./components/Filter";
 import Country from "./components/Country";
 import DetailPage from "./components/DetailPage";
+import FilterBody from "./components/FilterBody";
 import axios from "axios";
 import uniqid from "uniqid";
 
@@ -14,6 +15,7 @@ function App() {
   const [error, setError] = useState(null);
   const [isDetailPageVisible, setIsDetailPageVisible] = useState(false);
   const [detailData, setDetailData] = useState(null);
+  const [isFilterOpened, setIsFilterOpened] = useState(false);
 
   useEffect(() => {
     const getData = async () => {
@@ -39,6 +41,9 @@ function App() {
     setIsDetailPageVisible(false);
     setDetailData(null);
   };
+  const onFilterClick = () => {
+    setIsFilterOpened(!isFilterOpened);
+  };
   return (
     <div className="App">
       <Header />
@@ -47,7 +52,7 @@ function App() {
           <React.Fragment>
             <div className="control-items">
               <InputForm />
-              <Filter />
+              <Filter onClick={onFilterClick} isFilterOpened={isFilterOpened} />
             </div>
             <div className="country-list">
               {loading && <div>A moment please...</div>}

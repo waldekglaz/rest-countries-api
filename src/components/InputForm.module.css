@@ -29,3 +29,8 @@
     width: 480px;
   }
 }
+@media (min-width: 1024px) {
+  .form input {
+    margin-bottom: 0;
+  }
+}
