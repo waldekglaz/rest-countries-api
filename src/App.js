@@ -6,6 +6,7 @@ import DetailPage from "./components/DetailPage";
 import List from "./components/List";
 import axios from "axios";
 import useLocalStorage from "use-local-storage";
+import { ColorRing } from "react-loader-spinner";
 import "./App.css";
 // creating map of filters
 const FILTER_MAP = {
@@ -96,7 +97,23 @@ function App() {
               className="country-list"
               onClick={() => setIsFilterOpened(false)}
             >
-              {loading && <div>A moment please...</div>}
+              {loading && (
+                <ColorRing
+                  visible={true}
+                  height="80"
+                  width="80"
+                  ariaLabel="blocks-loading"
+                  wrapperStyle={{}}
+                  wrapperClass="blocks-wrapper"
+                  colors={[
+                    "#e15b64",
+                    "#f47e60",
+                    "#f8b26a",
+                    "#abbd81",
+                    "#849b87",
+                  ]}
+                />
+              )}
               {error && (
                 <div>{`There is a problem fetching the post data - ${error}`}</div>
               )}
