@@ -26,7 +26,7 @@ function DetailPage({ detailData, data, onClick }) {
         Back
       </button>
       <div className={styles["country-wrapper"]}>
-        <img src={detailData.flags.png} />
+        <img src={detailData.flags.png} alt={detailData.name.common} />
         <div className={["text-content"]}>
           <h2>{detailData.name.common}</h2>
           <div className={styles["list-container"]}>

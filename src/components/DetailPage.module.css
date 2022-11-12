@@ -58,7 +58,7 @@
 
 @media (min-width: 1024px) {
   .detail-page {
-    height: 100vh;
+    height: calc(100vh - 170px);
   }
   .country-wrapper {
     display: flex;
