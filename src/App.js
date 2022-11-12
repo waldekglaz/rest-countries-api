@@ -72,10 +72,12 @@ function App() {
     e.preventDefault();
   };
   const onBorderClickHandler = (e) => {
-    const [borderCountry] = data.filter(
-      (country) => country.name.common === e.target.textContent
-    );
-    setDetailData(borderCountry);
+    if (e.target.textContent !== "None") {
+      const [borderCountry] = data.filter(
+        (country) => country.name.common === e.target.textContent
+      );
+      setDetailData(borderCountry);
+    }
   };
 
   return (

@@ -48,6 +48,9 @@
   font-size: 12px;
   padding: 6px 30px;
 }
+.border:hover {
+  cursor: pointer;
+}
 
 @media (min-width: 768px) {
   .list-container {
