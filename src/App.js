@@ -56,7 +56,7 @@ function App() {
     setInputText(lowerCase);
   };
 
-  const onCountryClick = (data, item) => {
+  const onCountryClickHandler = (data, item) => {
     setIsFilterOpened(false);
     const [country] = data.filter((country) => country.name.common === item);
     setDetailData(country);
@@ -65,7 +65,6 @@ function App() {
   const onDetailPageClose = () => {
     setIsDetailPageVisible(false);
     setDetailData(null);
-    setInputValue("");
   };
   const onFilterClick = () => {
     setIsFilterOpened(!isFilterOpened);
@@ -121,7 +120,7 @@ function App() {
               {data && (
                 <List
                   data={data}
-                  onClick={onCountryClick}
+                  onCountryClickHandler={onCountryClickHandler}
                   input={inputText}
                   filter={filter}
                   filterMap={FILTER_MAP}

@@ -11,10 +11,10 @@ function DetailPage({ detailData, data, onClick }) {
 
   // creating array of neighbour countries full names based on coutry code
   const borderCountries = [];
-  for (const el in borders) {
-    for (const el2 in data) {
-      if (data[el2].cca3 === borders[el]) {
-        borderCountries.push(data[el2].name.common);
+  for (const i in borders) {
+    for (const index in data) {
+      if (data[index].cca3 === borders[i]) {
+        borderCountries.push(data[index].name.common);
       }
     }
   }

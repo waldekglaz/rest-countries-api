@@ -3,7 +3,7 @@ import Country from "./Country";
 import uniqid from "uniqid";
 import styles from "./List.module.css";
 
-function List({ data, onClick, input, filter, filterMap }) {
+function List({ data, onCountryClickHandler, input, filter, filterMap }) {
   const filteredData = data.filter((el) => {
     //if no input the return the original
     if (input === "") {
@@ -27,7 +27,7 @@ function List({ data, onClick, input, filter, filterMap }) {
               population={country.population}
               region={country.region}
               capital={country.capital}
-              onClick={onClick}
+              onCountryClickHandler={onCountryClickHandler}
               data={data}
             />
           );
