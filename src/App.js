@@ -7,7 +7,7 @@ import List from "./components/List";
 import axios from "axios";
 import useLocalStorage from "use-local-storage";
 import "./App.css";
-
+// creating map of filters
 const FILTER_MAP = {
   All: () => true,
   Africa: (region) => region.region === "Africa",
@@ -29,14 +29,6 @@ function App() {
   const [filter, setFilter] = useState("All");
   const [theme, setTheme] = useLocalStorage("theme" ? "dark" : "light");
 
-  const themeToggle = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-  };
-  const inputHandler = (e) => {
-    const lowerCase = e.target.value.toLowerCase();
-    setInputText(lowerCase);
-  };
   useEffect(() => {
     const getData = async () => {
       try {
@@ -52,7 +44,16 @@ function App() {
     };
     getData();
   }, []);
-  console.log(data);
+
+  const themeToggle = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+  };
+  const inputHandler = (e) => {
+    const lowerCase = e.target.value.toLowerCase();
+    setInputText(lowerCase);
+  };
+
   const onCountryClick = (data, item) => {
     setIsFilterOpened(false);
     const [country] = data.filter((country) => country.name.common === item);

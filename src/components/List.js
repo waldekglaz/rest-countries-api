@@ -33,7 +33,9 @@ function List({ data, onClick, input, filter, filterMap }) {
           );
         })
       ) : (
-        <p>No Country Found</p>
+        <p style={{ fontSize: "32px", position: "absolute", top: "50%" }}>
+          No Country Found
+        </p>
       )}
     </div>
   );
