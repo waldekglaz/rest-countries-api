@@ -4,6 +4,7 @@ import InputForm from "./components/InputForm";
 import Filter from "./components/Filter";
 import Country from "./components/Country";
 import DetailPage from "./components/DetailPage";
+import List from "./components/List";
 import axios from "axios";
 import uniqid from "uniqid";
 
@@ -16,7 +17,12 @@ function App() {
   const [detailData, setDetailData] = useState(null);
   const [isFilterOpened, setIsFilterOpened] = useState(false);
   const [inputValue, setInputValue] = useState("");
-
+  const [searchResults, setSearchResults] = useState(data);
+  const [inputText, setInputText] = useState("");
+  const inputHandler = (e) => {
+    const lowerCase = e.target.value.toLowerCase();
+    setInputText(lowerCase);
+  };
   useEffect(() => {
     const getData = async () => {
       try {
@@ -56,22 +62,27 @@ function App() {
       setData(data);
       return;
     }
-    // const searched = data.filter((item) => {
-    //   console.log(inputValue.toLowerCase());
-    //   return item.name.common.toLowerCase() === e.target.value.toLowerCase();
-    // });
-    // setData(searched);
-    const searchResults = [];
+
     const size = e.target.value.length;
-    data.forEach((el) => {
-      if (
-        el.name.common.slice(0, size).toLowerCase() ===
+    // data.forEach((el) => {
+    //   if (
+    //     el.name.common.slice(0, size).toLowerCase() ===
+    //     e.target.value.toLowerCase()
+    //   ) {
+    //     setSearchResults(searchResults.push(el));
+    //   }
+    // });
+    // setData(searchResults);
+    // console.log(searchResults);
+
+    const newData = data.filter(
+      (item) =>
+        item.name.common.slice(0, size).toLowerCase() ===
         e.target.value.toLowerCase()
-      ) {
-        searchResults.push(el);
-      }
-    });
-    setData(searchResults);
+    );
+    console.log(e.target.value.length);
+    console.log(newData);
+    setData(newData);
   };
 
   return (
@@ -84,7 +95,7 @@ function App() {
               <InputForm
                 onSubmit={onFormSubmitHandler}
                 value={inputValue}
-                onChange={onChangeInputValueHandler}
+                onChange={inputHandler}
               />
               <Filter onClick={onFilterClick} isFilterOpened={isFilterOpened} />
             </div>
@@ -93,21 +104,30 @@ function App() {
               {error && (
                 <div>{`There is a problem fetching the post data - ${error}`}</div>
               )}
-              {data &&
-                data.map((country) => {
-                  return (
-                    <Country
-                      key={uniqid()}
-                      name={country.name.common}
-                      flag={country.flags.png}
-                      population={country.population}
-                      region={country.region}
-                      capital={country.capital}
-                      onClick={onCountryClick}
-                      data={data}
-                    />
-                  );
-                })}
+              {
+                data && (
+                  <List
+                    data={data}
+                    onClick={onCountryClick}
+                    input={inputText}
+                  />
+                )
+                // data.map((country) => {
+                //   return (
+                //     <Country
+                //       key={uniqid()}
+                //       name={country.name.common}
+                //       flag={country.flags.png}
+                //       population={country.population}
+                //       region={country.region}
+                //       capital={country.capital}
+                //       onClick={onCountryClick}
+                //       data={data}
+                //     />
+                //   );
+                // }
+                // )}
+              }
             </div>
           </React.Fragment>
         )}

@@ -5,12 +5,7 @@ import { BiSearch } from "react-icons/bi";
 function InputForm({ onSubmit, value, onChange }) {
   return (
     <form className={styles.form} onSubmit={onSubmit}>
-      <input
-        type="text"
-        placeholder="Search for country"
-        value={value}
-        onChange={onChange}
-      />
+      <input type="text" placeholder="Search for country" onChange={onChange} />
       <BiSearch className={styles["search-icon"]} />
     </form>
   );

@@ -12,6 +12,7 @@ function Filter({ onClick, isFilterOpened }) {
       <ul
         className={`${styles.filters} ${isFilterOpened ? styles.active : ""}`}
       >
+        <li>All</li>
         <li>Africa</li>
         <li>Asia</li>
         <li>Europe</li>
