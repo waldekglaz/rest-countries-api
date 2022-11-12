@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./DetailPage.module.css";
 import { BsArrowLeft } from "react-icons/bs";
 
-function DetailPage({ detailData, data, onClick }) {
+function DetailPage({ detailData, data, onClick, onBorderClickHandler }) {
   // Catching nested data
   const curr = Object.values(detailData.currencies);
   const lang = Object.values(detailData.languages).join(", ");
@@ -69,7 +69,11 @@ function DetailPage({ detailData, data, onClick }) {
               {borderCountries.length > 0 &&
                 borderCountries.map((country) => {
                   return (
-                    <span className={styles.border} key={country}>
+                    <span
+                      onClick={onBorderClickHandler}
+                      className={styles.border}
+                      key={country}
+                    >
                       {country}
                     </span>
                   );

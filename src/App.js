@@ -26,7 +26,6 @@ function App() {
   const [isDetailPageVisible, setIsDetailPageVisible] = useState(false);
   const [detailData, setDetailData] = useState(null);
   const [isFilterOpened, setIsFilterOpened] = useState(false);
-  const [inputValue, setInputValue] = useState("");
   const [inputText, setInputText] = useState("");
   const [filter, setFilter] = useState("All");
   const [theme, setTheme] = useLocalStorage("theme" ? "dark" : "light");
@@ -72,6 +71,12 @@ function App() {
   const onFormSubmitHandler = (e) => {
     e.preventDefault();
   };
+  const onBorderClickHandler = (e) => {
+    const [borderCountry] = data.filter(
+      (country) => country.name.common === e.target.textContent
+    );
+    setDetailData(borderCountry);
+  };
 
   return (
     <div className="App" data-theme={theme}>
@@ -82,7 +87,7 @@ function App() {
             <div className="control-items">
               <InputForm
                 onSubmit={onFormSubmitHandler}
-                value={inputValue}
+                value={inputText}
                 onChange={inputHandler}
               />
               <Filter
@@ -134,6 +139,7 @@ function App() {
             detailData={detailData}
             onClick={onDetailPageClose}
             data={data}
+            onBorderClickHandler={onBorderClickHandler}
           />
         )}
       </main>
