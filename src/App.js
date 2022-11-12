@@ -2,13 +2,20 @@ import React, { useState, useEffect } from "react";
 import Header from "./components/Header";
 import InputForm from "./components/InputForm";
 import Filter from "./components/Filter";
-import Country from "./components/Country";
 import DetailPage from "./components/DetailPage";
 import List from "./components/List";
 import axios from "axios";
-import uniqid from "uniqid";
-
 import "./App.css";
+
+const FILTER_MAP = {
+  All: () => true,
+  Africa: (region) => region.region === "Africa",
+  Asia: (region) => region.region === "Asia",
+  Europe: (region) => region.region === "Europe",
+  Oceania: (region) => region.region === "Oceania",
+};
+const FILTER_NAMES = Object.keys(FILTER_MAP);
+
 function App() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -17,8 +24,8 @@ function App() {
   const [detailData, setDetailData] = useState(null);
   const [isFilterOpened, setIsFilterOpened] = useState(false);
   const [inputValue, setInputValue] = useState("");
-  const [searchResults, setSearchResults] = useState(data);
   const [inputText, setInputText] = useState("");
+  const [filter, setFilter] = useState("All");
   const inputHandler = (e) => {
     const lowerCase = e.target.value.toLowerCase();
     setInputText(lowerCase);
@@ -38,7 +45,9 @@ function App() {
     };
     getData();
   }, []);
+  console.log(data);
   const onCountryClick = (data, item) => {
+    setIsFilterOpened(false);
     const [country] = data.filter((country) => country.name.common === item);
     setDetailData(country);
     setIsDetailPageVisible(true);
@@ -55,36 +64,6 @@ function App() {
     e.preventDefault();
   };
 
-  const onChangeInputValueHandler = (e) => {
-    setInputValue(e.target.value);
-
-    if (e.target.value === "") {
-      setData(data);
-      return;
-    }
-
-    const size = e.target.value.length;
-    // data.forEach((el) => {
-    //   if (
-    //     el.name.common.slice(0, size).toLowerCase() ===
-    //     e.target.value.toLowerCase()
-    //   ) {
-    //     setSearchResults(searchResults.push(el));
-    //   }
-    // });
-    // setData(searchResults);
-    // console.log(searchResults);
-
-    const newData = data.filter(
-      (item) =>
-        item.name.common.slice(0, size).toLowerCase() ===
-        e.target.value.toLowerCase()
-    );
-    console.log(e.target.value.length);
-    console.log(newData);
-    setData(newData);
-  };
-
   return (
     <div className="App">
       <Header />
@@ -97,37 +76,31 @@ function App() {
                 value={inputValue}
                 onChange={inputHandler}
               />
-              <Filter onClick={onFilterClick} isFilterOpened={isFilterOpened} />
+              <Filter
+                onClick={onFilterClick}
+                isFilterOpened={isFilterOpened}
+                names={FILTER_NAMES}
+                setFilter={setFilter}
+                setIsFilterOpened={setIsFilterOpened}
+              />
             </div>
-            <div className="country-list">
+            <div
+              className="country-list"
+              onClick={() => setIsFilterOpened(false)}
+            >
               {loading && <div>A moment please...</div>}
               {error && (
                 <div>{`There is a problem fetching the post data - ${error}`}</div>
               )}
-              {
-                data && (
-                  <List
-                    data={data}
-                    onClick={onCountryClick}
-                    input={inputText}
-                  />
-                )
-                // data.map((country) => {
-                //   return (
-                //     <Country
-                //       key={uniqid()}
-                //       name={country.name.common}
-                //       flag={country.flags.png}
-                //       population={country.population}
-                //       region={country.region}
-                //       capital={country.capital}
-                //       onClick={onCountryClick}
-                //       data={data}
-                //     />
-                //   );
-                // }
-                // )}
-              }
+              {data && (
+                <List
+                  data={data}
+                  onClick={onCountryClick}
+                  input={inputText}
+                  filter={filter}
+                  filterMap={FILTER_MAP}
+                />
+              )}
             </div>
           </React.Fragment>
         )}

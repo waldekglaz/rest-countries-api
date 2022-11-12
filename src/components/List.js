@@ -1,8 +1,9 @@
 import React from "react";
 import Country from "./Country";
 import uniqid from "uniqid";
+import styles from "./List.module.css";
 
-function List({ data, onClick, input }) {
+function List({ data, onClick, input, filter, filterMap }) {
   const filteredData = data.filter((el) => {
     //if no input the return the original
     if (input === "") {
@@ -15,8 +16,8 @@ function List({ data, onClick, input }) {
   });
 
   return (
-    <div>
-      {filteredData.map((country) => {
+    <div className={styles["country-list"]}>
+      {filteredData.filter(filterMap[filter]).map((country) => {
         return (
           <Country
             key={uniqid()}

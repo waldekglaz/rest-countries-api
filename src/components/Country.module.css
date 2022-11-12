@@ -30,8 +30,13 @@
 .text-content ul li span {
   font-weight: 400;
 }
-@media (min-width: 1440px) {
+@media (min-width: 768px) {
   .country {
-    margin-top: 75px;
+    margin: 75px 20px 0;
+  }
+}
+@media (min-width: 1024px) {
+  .country {
+    margin: 75px 0 0;
   }
 }
