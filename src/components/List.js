@@ -33,7 +33,7 @@ function List({ data, onClick, input, filter, filterMap }) {
           );
         })
       ) : (
-        <p>No Country</p>
+        <p>No Country Found</p>
       )}
     </div>
   );

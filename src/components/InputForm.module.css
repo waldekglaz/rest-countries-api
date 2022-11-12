@@ -3,12 +3,12 @@
 }
 .form input {
   width: 100%;
-  background: #ffffff;
+  background: var(--secondary-bg);
   box-shadow: 0px 2px 9px rgba(0, 0, 0, 0.0532439);
   border-radius: 5px;
   padding: 14px 0 14px 74px;
   font-size: 12px;
-  color: #111517;
+  color: var(--main-font-color);
   border-color: transparent;
   margin-bottom: 40px;
 }

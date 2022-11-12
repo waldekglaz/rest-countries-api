@@ -5,6 +5,7 @@ import Filter from "./components/Filter";
 import DetailPage from "./components/DetailPage";
 import List from "./components/List";
 import axios from "axios";
+import useLocalStorage from "use-local-storage";
 import "./App.css";
 
 const FILTER_MAP = {
@@ -26,6 +27,12 @@ function App() {
   const [inputValue, setInputValue] = useState("");
   const [inputText, setInputText] = useState("");
   const [filter, setFilter] = useState("All");
+  const [theme, setTheme] = useLocalStorage("theme" ? "dark" : "light");
+
+  const themeToggle = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+  };
   const inputHandler = (e) => {
     const lowerCase = e.target.value.toLowerCase();
     setInputText(lowerCase);
@@ -65,8 +72,8 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <Header />
+    <div className="App" data-theme={theme}>
+      <Header theme={theme} themeToggle={themeToggle} />
       <main className="main">
         {!isDetailPageVisible && (
           <React.Fragment>
