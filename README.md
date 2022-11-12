@@ -28,34 +28,26 @@ User is able to:
 - Search for a country using an `input` field
 - Filter countries by region
 - Click on a country to see more detailed information on a separate page
+- Click through to the border countries on the detail page
 - Toggle the color scheme between light and dark
 
 ### Screenshot
 
-<!-- ![](./Screenshot_Desk_1.png)
-![](./Screenshot_Desk_2.png)
-![](./Screenshot_ToDoApp1mob.png)
-![](./Screenshot_ToDoApp2mob.png) -->
+![](./rest-desk-light-all.png)
+![](./rest-desk-light.png)
+![](./rest-mob-dark.png)
 
 ### Links
 
 - Solution URL: [code](https://github.com/waldekglaz/rest-countries-api)
-- Live Site URL: [live](https://fem-to-do-app.netlify.app/)
+- Live Site URL: [live](https://rest-countries-wg.netlify.app/)
 
 ## My process
 
 ### Built with
 
 - React Js with CSS modules, [uniqid](https://www.npmjs.com/package/uniqid), [use-local-storage](https://www.npmjs.com/package/use-local-storage), [react-icons](https://react-icons.github.io/react-icons), [react-loader-spinner](https://www.npmjs.com/package/react-loader-spinner)
-- useState, useRef hooks
 - Mobile-first
-
-### Lighthouse Performance
-
-- Mobile
-  ![](./todo_mobile_performance.PNG)
-- Desktop
-  ![](./todo_desktop_performance.PNG)
 
 ## Author
 
