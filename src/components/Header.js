@@ -1,14 +1,14 @@
 import React from "react";
 import styles from "./Header.module.css";
-import { BsMoon } from "react-icons/bs";
+import { BsMoon, BsSun } from "react-icons/bs";
 
 function Header({ theme, themeToggle }) {
   return (
     <header className={styles.header}>
       <h1>Where in the world?</h1>
       <button onClick={themeToggle}>
-        <BsMoon />
-        <span>Dark mode</span>
+        {theme !== "light" ? <BsSun /> : <BsMoon />}
+        <span>{theme === "light" ? "Dark mode" : "Light mode"}</span>
       </button>
     </header>
   );
