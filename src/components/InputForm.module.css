@@ -27,6 +27,7 @@
 @media (min-width: 768px) {
   .form input {
     width: 480px;
+    font-size: 14px;
   }
 }
 @media (min-width: 1024px) {

@@ -41,3 +41,9 @@
   color: var(--main-font-color);
   margin-bottom: 4px;
 }
+@media (min-width: 768px) {
+  .filter,
+  .filters {
+    font-size: 14px;
+  }
+}
