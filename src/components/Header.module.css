@@ -21,9 +21,9 @@ button {
   cursor: pointer;
   font-size: 12px;
 }
-button:hover {
+/* button:hover {
   border-bottom: 2px solid black;
-}
+} */
 span {
   margin-left: 8px;
 }

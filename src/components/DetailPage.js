@@ -8,7 +8,6 @@ function DetailPage({ detailData, data, onClick }) {
   const lang = Object.values(detailData.languages).join(", ");
   const nativeNames = Object.values(detailData.name.nativeName);
   const borders = detailData.borders;
-  const countryCode = detailData.cca3;
 
   // creating array of neighbour countries full names based on coutry code
   const borderCountries = [];
@@ -23,7 +22,7 @@ function DetailPage({ detailData, data, onClick }) {
   return (
     <div className={styles["detail-page"]}>
       <button type="button" onClick={onClick}>
-        <BsArrowLeft />
+        <BsArrowLeft style={{ marginRight: 10 }} />
         Back
       </button>
       <div className={styles["country-wrapper"]}>

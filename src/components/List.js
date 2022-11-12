@@ -17,20 +17,24 @@ function List({ data, onClick, input, filter, filterMap }) {
 
   return (
     <div className={styles["country-list"]}>
-      {filteredData.filter(filterMap[filter]).map((country) => {
-        return (
-          <Country
-            key={uniqid()}
-            name={country.name.common}
-            flag={country.flags.png}
-            population={country.population}
-            region={country.region}
-            capital={country.capital}
-            onClick={onClick}
-            data={data}
-          />
-        );
-      })}
+      {filteredData.length > 0 ? (
+        filteredData.filter(filterMap[filter]).map((country) => {
+          return (
+            <Country
+              key={uniqid()}
+              name={country.name.common}
+              flag={country.flags.png}
+              population={country.population}
+              region={country.region}
+              capital={country.capital}
+              onClick={onClick}
+              data={data}
+            />
+          );
+        })
+      ) : (
+        <p>No Country</p>
+      )}
     </div>
   );
 }
