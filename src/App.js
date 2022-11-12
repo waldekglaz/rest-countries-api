@@ -17,6 +17,7 @@ const FILTER_MAP = {
   Oceania: (region) => region.region === "Oceania",
 };
 const FILTER_NAMES = Object.keys(FILTER_MAP);
+const URL = "https://restcountries.com/v3.1/all";
 
 function App() {
   const [data, setData] = useState(null);
@@ -33,7 +34,7 @@ function App() {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await axios.get("https://restcountries.com/v3.1/all");
+        const response = await axios.get(URL);
         setData(response.data);
         setError(null);
       } catch (err) {
@@ -46,7 +47,7 @@ function App() {
     getData();
   }, []);
 
-  const themeToggle = () => {
+  const themeToggleHandler = () => {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
   };
@@ -75,7 +76,7 @@ function App() {
 
   return (
     <div className="App" data-theme={theme}>
-      <Header theme={theme} themeToggle={themeToggle} />
+      <Header theme={theme} themeToggleHandler={themeToggleHandler} />
       <main className="main">
         {!isDetailPageVisible && (
           <React.Fragment>
