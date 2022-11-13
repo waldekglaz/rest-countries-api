@@ -35,7 +35,8 @@ function DetailPage({ detailData, data, onClick, onBorderClickHandler }) {
                 Native Name: <span>{nativeNames[0].official}</span>
               </li>
               <li>
-                Population: <span>{detailData.population}</span>
+                Population:{" "}
+                <span>{detailData.population.toLocaleString()}</span>
               </li>
               <li>
                 Region: <span>{detailData.region}</span>

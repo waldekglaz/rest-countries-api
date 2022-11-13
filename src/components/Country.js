@@ -19,7 +19,7 @@ function Country({
         <h2 className={styles["country__name"]}>{name}</h2>
         <ul>
           <li>
-            Population:<span>{population}</span>
+            Population:<span>{population.toLocaleString()}</span>
           </li>
           <li>
             Region:<span>{region}</span>
