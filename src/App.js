@@ -64,6 +64,7 @@ function App() {
   const onDetailPageClose = () => {
     setIsDetailPageVisible(false);
     setDetailData(null);
+    setInputText("");
   };
   const onFilterClick = () => {
     setIsFilterOpened(!isFilterOpened);
